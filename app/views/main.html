@@ -1,28 +1,28 @@
 <div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
+  <h1>CityScan (TBN)</h1>
   <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
+  A fun little searchable archive of city government websites.
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+  <form class="form-inline">
+    <input placeholder="Search" ng-model="query" class="form-control"/>
+    <input type="submit" class="btn btn-primary" ng-click="search(query);query = null;">
+  </form>
+  </label>
 </div>
-
-<div class="row marketing">
-  <h4>Firebase</h4>
-  <p>
-    Firebase is a powerful API to store and sync data in realtime.
-  </p>
-
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+<!-- Use bootstrap width system so that I can get mobile compatibility -->
+<div id="results">
+  <div id="metrics" class="well text-center" ng-show="stats">
+    <h4>Results:{{stats.hits}}</h4>
+  </div>
+  <ul class="results list-group">
+    <li ng-repeat="result in results" class="result list-group-item row">
+      <div class="cityName col-xs-3">{{result.city}}</div>
+      <div class="resultItem col-xs-6">
+      <dl>
+        <dt><a ng-href="{{result.url}}" target="_blank">{{result.title}}</a></dt>
+        <dd ng-bind-html="result.description"></dd>
+      </dl>
+      </div>
+    </li>
+  </ul>
 </div>

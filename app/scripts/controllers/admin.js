@@ -3,11 +3,21 @@
  * @ngdoc function
  * @name cityadminApp.controller:ChatCtrl
  * @description
- * # ChatCtrl
- * A demo of using AngularFire to manage a synchronized list.
+ * # CityCntrl
+ * Manage cities searched by climatescrape
  */
+
+//Todo: add controller which calls elasticsearch db with query.
+//Returns: City, link, snippet of text.
+//Todo: add scrape button
+//Todo: add endpoint in scraper for status update?
+//Should I just have the crawler live on the EC2 instance? Seems dirty. I'd rather have it be a lambda script...
+//Should I just leave the endpoint exposed? Probably fine for now. Easy enough to put it behind some auth with permissions if I need to.
+
+//Step 1: Get it 
+
 angular.module('cityadminApp')
-  .controller('ChatCtrl', function ($scope, Ref, $firebaseArray, $timeout) {
+  .controller('AdminCtrl', function ($scope, Ref, $firebaseArray, $timeout) {
     // synchronize a read-only, synchronized array of messages, limit to most recent 10
     $scope.cities = $firebaseArray(Ref.child('cities'));
 

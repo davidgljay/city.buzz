@@ -16,5 +16,4 @@ angular.module('cityadminApp', [
     'ngSanitize',
     'ngTouch',
     'firebase',
-    'firebase.ref'
-  ]);
+    'firebase.ref']);

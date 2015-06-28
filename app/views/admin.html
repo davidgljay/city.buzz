@@ -1,0 +1,19 @@
+<div id="admin">
+<h2>City Admin</h2>
+
+<form class="row form-group">
+  <input placeholder="City Name" ng-model="cityName" class="col-md-5 form-control">
+  <input placeholder="City URL" ng-model="cityUrl" class="col-md-5 form-control">
+  <input type="submit" class="btn btn-primary" ng-click="addCity(cityName, cityUrl);cityName = null;cityUrl = null;"></input>
+</form>
+
+<ul id="city" class="list-group row" ng-show="cities.length">
+  <li ng-repeat="city in cities" class="list-group-item">
+  	<input ng-model="city.name" ng-change="cities.$save(city)" class="col-md-5"/>
+  	<input ng-model="city.url" ng-change="cities.$save(city)" class="col-md-5"/>
+  	<button class="btn btn-danger" ng-click="cities.$remove(city)">X</button>
+  </li>
+</ul>
+
+<p class="alert alert-danger" ng-show="err">{{err}}</p>
+</div>
