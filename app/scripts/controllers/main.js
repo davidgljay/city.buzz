@@ -12,7 +12,7 @@ angular.module('cityadminApp')
   	$scope.results = [];
   	$scope.search = function(query) {
   		$scope.results=[];
-  		$http.jsonp('http://54.85.208.63:9200/cities/_search?q='+encodeURIComponent(query) + '&callback=JSON_CALLBACK').
+  		$http.jsonp('http://54.85.208.63:9200/cities/_search?q='+encodeURIComponent(query) + '&size=100&callback=JSON_CALLBACK').
   			success(function(data, status, headers, config) {
   				console.log(status);
   				console.log(data);
@@ -26,8 +26,7 @@ angular.module('cityadminApp')
 						title: result._source.title,
 						description: getRelevantSentence(result._source.body.description, result._source.body.text,query),
 						url: result._source.url,
-					})
-					console.log(getRelevantSentence(result._source.body.description, result._source.body.text,query));		
+					})		
   				};
 
   			}). 
