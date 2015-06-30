@@ -11,8 +11,17 @@
 </div>
 <!-- Use bootstrap width system so that I can get mobile compatibility -->
 <div id="results">
-  <div id="metrics" class="well text-center" ng-show="stats">
-    <h4>Results:{{stats.hits}}</h4>
+  <div id="metrics" class="well row text-center" ng-show="stats">
+    <div class="col-md-4">
+      <h4>Query:{{lastQuery}}</h4>
+    </div>
+    <div class="col-md-4">
+      <h4>Results:{{stats.hits}}</h4>
+    </div>
+    <div class="col-md-4" ng-show="csvResults.length>0">
+      <button type="button" ng-csv="csvResults" class="btn" filename="citysitedata.csv" csv-header="['Title', 'URL', 'City','Body']">Get CSV</button>
+    </div>
+    </div>
   </div>
   <ul class="results list-group">
     <li ng-repeat="result in results" class="result list-group-item row">

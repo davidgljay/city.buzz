@@ -33,6 +33,27 @@ angular.module('cityadminApp')
   				console.log(status);
   			});
 
+        $scope.lastQuery = query;
+
+        //Make another request for the full dataset to store as a csv.
+        $scope.csvResults=[];
+
+        $http.jsonp('http://54.85.208.63:9200/cities/_search?q='+encodeURIComponent(query) + '&size=20000&callback=JSON_CALLBACK').
+        success(function(data, status, headers, config) {
+          for (var i=0; i < data.hits.hits.length; i++){
+            var result = data.hits.hits[i];
+            $scope.csvResults.push( {
+              title: result._source.title,
+              url: result._source.url,
+              city:result._source.city_name,
+              body: result._source.body.text
+            })    
+          };
+        }). 
+        error(function(data, status, headers, config) {
+          console.log(status);
+        });
+
   		//TODO: Sort results by city.
 		// Get stats
 		// $scope.stats ={};
