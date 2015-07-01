@@ -20,13 +20,19 @@ angular.module('cityadminApp')
   .controller('AdminCtrl', function ($scope, Ref, $firebaseArray, $timeout) {
     // synchronize a read-only, synchronized array of messages, limit to most recent 10
     $scope.cities = $firebaseArray(Ref.child('cities'));
+    $scope.media = $firebaseArray(Ref.child('media'));
+    $scope.publications = $firebaseArray(Ref.child('publications'));
 
     // display any errors
     $scope.cities.$loaded().catch(alert);
+    $scope.media.$loaded().catch(alert);
+    $scope.publications.$loaded().catch(alert);
+
+    $scope.type="cities";
 
     // provide a method for adding a message
-    $scope.addCity = function(cityName, cityUrl) {
-        $scope.cities.$add({name: cityName, url:cityUrl})
+    $scope.addItem = function(name, url) {
+        $scope[$scope.type].$add({name: name, url:url})
           // display any errors
           .catch(alert);
     };

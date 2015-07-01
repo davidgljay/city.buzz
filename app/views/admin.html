@@ -2,18 +2,49 @@
 <h2>City Admin</h2>
 
 <form class="row form-inline">
-  <input placeholder="City Name" ng-model="cityName" class="col-md-5 form-control">
-  <input placeholder="City URL" ng-model="cityUrl" class="col-md-5 form-control">
-  <input type="submit" class="btn btn-primary" ng-click="addCity(cityName, cityUrl);cityName = null;cityUrl = null;"></input>
+  <select class="form-control" ng-model="type">
+  	<option value="cities">City</option>
+  	<option value="media">Media Source</option>
+  	<option value="publications">Publication</option>
+  </select>
+  <input placeholder="Name" ng-model="name" class="col-md-5 form-control">
+  <input placeholder="URL" ng-model="url" class="col-md-5 form-control">
+  <input type="submit" class="btn btn-primary" ng-click="addItem(name, url);name = null;url = null;"></input>
 </form>
 
-<ul id="city" class="list-group row" ng-show="cities.length">
-  <li ng-repeat="city in cities" class="list-group-item">
-  	<input ng-model="city.name" ng-change="cities.$save(city)" class="col-md-5"/>
-  	<input ng-model="city.url" ng-change="cities.$save(city)" class="col-md-5"/>
-  	<button class="btn btn-danger" ng-click="cities.$remove(city)">X</button>
-  </li>
-</ul>
+<div ng-show="cities.length>0">
+	<h2>Cities</h2>
+	<ul id="city" class="list-group row" ng-show="cities.length">
+	  <li ng-repeat="city in cities" class="list-group-item">
+	  	<input ng-model="city.name" ng-change="cities.$save(city)" class="col-md-5"/>
+	  	<input ng-model="city.url" ng-change="cities.$save(city)" class="col-md-5"/>
+	  	<button class="btn btn-danger" ng-click="cities.$remove(city)">X</button>
+	  </li>
+	</ul>
+</div>
+
+<div ng-show="media.length>0">
+	<h2>Media Sources</h2>
+	<ul id="media" class="list-group row" ng-show="media.length">
+	  <li ng-repeat="mediasource in media" class="list-group-item">
+	  	<input ng-model="mediasource.name" ng-change="media.$save(mediasource)" class="col-md-5"/>
+	  	<input ng-model="mediasource.url" ng-change="media.$save(mediasource)" class="col-md-5"/>
+	  	<button class="btn btn-danger" ng-click="media.$remove(mediasource)">X</button>
+	  </li>
+	</ul>
+</div>
+
+<div ng-show="publications.length>0">
+	<h2>Publications</h2>
+	<ul id="city" class="list-group row" ng-show="publications.length">
+	  <li ng-repeat="publication in publications" class="list-group-item">
+	  	<input ng-model="publication.name" ng-change="publications.$save(publication)" class="col-md-5"/>
+	  	<input ng-model="publication.url" ng-change="publications.$save(publication)" class="col-md-5"/>
+	  	<button class="btn btn-danger" ng-click="publications.$remove(publication)">X</button>
+	  </li>
+	</ul>
+</div>
+
 
 <p class="alert alert-danger" ng-show="err">{{err}}</p>
 </div>
