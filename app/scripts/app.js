@@ -17,4 +17,5 @@ angular.module('cityadminApp', [
     'ngTouch',
     'firebase',
     'firebase.ref',
+    'firebase.auth',
     'ngCsv']);
