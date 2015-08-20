@@ -1,7 +1,5 @@
 'use strict';
 /**
- * @ngdoc function
- * @name tempApp.controller:ChatCtrl
  * @description
  * # ChatCtrl
  * A demo of using AngularFire to manage a synchronized list.

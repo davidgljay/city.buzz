@@ -9,12 +9,7 @@
 
 //Todo: add controller which calls elasticsearch db with query.
 //Returns: City, link, snippet of text.
-//Todo: add scrape button
-//Todo: add endpoint in scraper for status update?
-//Should I just have the crawler live on the EC2 instance? Seems dirty. I'd rather have it be a lambda script...
 //Should I just leave the endpoint exposed? Probably fine for now. Easy enough to put it behind some auth with permissions if I need to.
-
-//Step 1: Get it 
 
 angular.module('cityadminApp')
   .controller('AdminCtrl', function ($scope, Ref, $firebaseArray, $timeout) {
