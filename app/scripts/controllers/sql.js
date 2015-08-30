@@ -13,33 +13,37 @@
     $scope.messages = [];
 
     $scope.sqlpost = function(query) {
-      console.log("posting");
-    	$http.post('http://52.20.19.198:8099',query).then(
+      console.log("posting: " + query);
+    	$http.post('http://localhost:8000', query).then(
     		function(response) {
           console.log("Got response");
-    			if (response.code==200) {
+          console.log(response);
+    			if (response.status==200) {
     				alert("Sweet success!","success");
 	    			$scope.results = {
 	    				fields:[],
 	    				rows:[]
 	    			};
-	    			for (field in response.body.fields) {
-	    				$scope.results.fields.push(field)
-	    			}
-	    			for (row in response.body.rows) {
-	    				$scope.results.rows.push(row);
-	    				for (key in row.keys()) {
-	    					$scope.results.rows[-1].push(row[key]);
+            for (var key in response.data.rows[0]) {
+              $scope.results.fields.push(key);
+            }
+	    			for (var i=0; i<response.data.rows.length; i++) {
+              $scope.results.rows.push([]);
+	    				for (var key in response.data.rows[i]) {
+                console.log(key);
+	    					$scope.results.rows[i].push(response.data.rows[i][key]);
 	    				}
 	    			}
+            console.log($scope.results)
     			} else {
-            console.log(JSON.stringify(response));
-    				alert("Wuh oh! " + response + ": " + response.body,"danger");
+            console.log(response);
+    				alert("Wuh oh! " + response.data.error);
     			}
 
     		},
     		function(response) {
-    			alert("Wuh oh! " + response + ": " + response.body,"danger");
+          console.log(response);
+    			alert("Wuh oh! " + response.data.error,"danger");
     		});
     };
 

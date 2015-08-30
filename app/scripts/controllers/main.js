@@ -13,7 +13,7 @@ angular.module('cityadminApp')
   	$scope.search = function(query) {
   		// Get search results.
   		$scope.results=[];
-  		$http.jsonp('http://54.85.208.63:9200/_search?q='+encodeURIComponent(query) + '&size=100&callback=JSON_CALLBACK').
+  		$http.jsonp('http://elastic.civic.buzz:9200/_search?q='+encodeURIComponent(query) + '&size=100&callback=JSON_CALLBACK').
   			success(function(data, status, headers, config) {
   				$scope.stats = {
   					hits: data.hits.total
@@ -38,7 +38,7 @@ angular.module('cityadminApp')
         //Make another request for the full dataset to store as a csv.
         $scope.csvResults=[];
 
-        $http.jsonp('http://54.85.208.63:9200/_search?q='+encodeURIComponent(query) + '&size=20000&callback=JSON_CALLBACK').
+        $http.jsonp('http://elastic.civic.buzz:9200/_search?q='+encodeURIComponent(query) + '&size=20000&callback=JSON_CALLBACK').
         success(function(data, status, headers, config) {
           for (var i=0; i < data.hits.hits.length; i++){
             var result = data.hits.hits[i];
