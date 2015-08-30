@@ -9,12 +9,14 @@
 
  angular.module('cityadminApp')
   .controller('SQLCtrl', function ($scope, $http, Auth, $timeout) {
-    $scope.user = user;
     $scope.logout = function() { Auth.$unauth(); };
+    $scope.messages = [];
 
     $scope.sqlpost = function(query) {
-    	$http.post('http://api.civic.buzz:8099',query).then(
+      console.log("posting");
+    	$http.post('http://52.20.19.198:8099',query).then(
     		function(response) {
+          console.log("Got response");
     			if (response.code==200) {
     				alert("Sweet success!","success");
 	    			$scope.results = {
@@ -31,12 +33,13 @@
 	    				}
 	    			}
     			} else {
-    				alert("Wuh oh! " response.code + ": " + response.body,"error");
+            console.log(JSON.stringify(response));
+    				alert("Wuh oh! " + response + ": " + response.body,"danger");
     			}
 
     		},
     		function(response) {
-    			alert("Wuh oh! " response.code + ": " + response.body,"error");
+    			alert("Wuh oh! " + response + ": " + response.body,"danger");
     		});
     };
 
@@ -47,4 +50,4 @@
         $scope.messages.splice($scope.messages.indexOf(obj), 1);
       }, 10000);
     };
-  }
+  });

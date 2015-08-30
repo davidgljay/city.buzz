@@ -52,6 +52,10 @@ angular.module('cityadminApp')
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'
       })
+      .whenAuthenticated('/sql', {
+        templateUrl: 'views/sql.html',
+        controller: 'SQLCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 
