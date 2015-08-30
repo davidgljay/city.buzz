@@ -14,7 +14,7 @@
 
     $scope.sqlpost = function(query) {
       console.log("posting: " + query);
-    	$http.post('http://localhost:8000', query).then(
+    	$http.post('http://sql.civic.buzz:8099', query).then(
     		function(response) {
           console.log("Got response");
           console.log(response);

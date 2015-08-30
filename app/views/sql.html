@@ -3,7 +3,7 @@
   <p><i>Accepts SELECT, SHOW, and DESCRIBE queries.</i></p>
   <p><i>The database has one table, READINGS, which represents a specific crawl of a url.</i></p>
   <form class="form-inline">
-    <textarea id="sqlinput" placeholder="SELECT COUNT(*) FROM READINGS" ng-model="query" class="form-control"/>
+    <textarea id="sqlinput" placeholder="SELECT COUNT(*) FROM READINGS" ng-model="query" class="form-control"></textarea>
     <input type="submit" class="btn btn-primary" ng-click="sqlpost(query);">
   </form>
 </div>
